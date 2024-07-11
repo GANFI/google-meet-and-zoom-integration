@@ -1,0 +1,16 @@
+{
+    "name": "ganfi/google-meet-and-zoom-integration",
+    "description": "Plugin for integration google meet and zoom",
+    "autoload": {
+        "psr-4": {
+            "Ganfi\\GoogleMeetAndZoomIntegration\\": "includes/"
+        }
+    },
+    "authors": [
+        {
+            "name": "ganfi",
+            "email": "tamplier4ru@hotmail.com"
+        }
+    ],
+    "require": {}
+}
