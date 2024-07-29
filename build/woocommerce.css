@@ -1,0 +1,3 @@
+.woocommerce-MyAccount-navigation ul li.woocommerce-MyAccount-navigation-link--my-meets a::before {
+    content: none;
+}

@@ -14,6 +14,10 @@ if (!defined('WPINC')) {
 	die;
 }
 
+register_deactivation_hook(__FILE__, function () {
+	flush_rewrite_rules();
+});
+
 final class Google_Meet_And_Zoom_Integration
 {
 	const VERSION = '1.0.0';
@@ -25,8 +29,16 @@ final class Google_Meet_And_Zoom_Integration
 	public function __construct(wpdb $wpdb)
 	{
 		$this->wpdb = $wpdb;
+
+		$this->create_meets_page();
+
 		add_shortcode($this->plugin_name, [$this, 'shortcode']);
 		add_action('rest_api_init', [$this, 'register_rest_endpoints']);
+
+		register_activation_hook(__FILE__, function () {
+			add_rewrite_endpoint('my-meets', EP_ROOT | EP_PAGES);
+			flush_rewrite_rules();
+		});
 	}
 
 	public function enqueue_scripts(): void
@@ -59,6 +71,39 @@ final class Google_Meet_And_Zoom_Integration
 //			'callback' => [$this, 'get_info'],
 //			'permission_callback' => [$this, 'check_auth'],
 //		));
+	}
+
+	public function create_meets_page()
+	{
+		add_action('init', function () {
+			add_rewrite_endpoint('my-meets', EP_ROOT | EP_PAGES);
+		});
+
+		add_filter('query_vars', function ($vars) {
+			$vars[] = 'my-meets';
+			return $vars;
+		}, 0);
+
+		add_filter('woocommerce_account_menu_items', function($items) {
+			$new_items = array();
+			foreach($items as $key => $value){
+				if($key != 'customer-logout'){
+					$new_items[$key] = $value;
+				}else{
+					$new_items['my-meets'] = __('My Meets');
+					$new_items[$key] = $value;
+				}
+			}
+			return $new_items;
+		}, 0);
+
+		wp_enqueue_style($this->plugin_name . '-woocommerce-style', plugin_dir_url(__FILE__) . 'build/woocommerce.css', [], self::VERSION);
+
+
+		add_action('woocommerce_account_my-meets_endpoint', function () {
+			echo do_shortcode('[google-meet-and-zoom-integration]');
+		});
+
 	}
 }
 
