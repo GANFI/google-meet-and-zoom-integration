@@ -66,11 +66,22 @@ final class Google_Meet_And_Zoom_Integration
 
 	public function register_rest_endpoints()
 	{
-//		register_rest_route('custom-table/v1', '/get-info/', array(
-//			'methods' => 'GET',
-//			'callback' => [$this, 'get_info'],
-//			'permission_callback' => [$this, 'check_auth'],
-//		));
+		register_rest_route($this->plugin_name . '/v1', '/save-token/', array(
+			'methods' => 'POST',
+			'callback' => [$this, 'save_token'],
+			'permission_callback' => [$this, 'check_auth'],
+		));
+
+		register_rest_route($this->plugin_name . '/v1', '/info/', array(
+			'methods' => 'GET',
+			'callback' => [$this, 'get_info'],
+			'permission_callback' => [$this, 'check_auth'],
+		));
+	}
+
+	public function check_auth($request)
+	{
+		return wp_get_current_user()->ID !== 0;
 	}
 
 	public function create_meets_page()
@@ -97,13 +108,49 @@ final class Google_Meet_And_Zoom_Integration
 			return $new_items;
 		}, 0);
 
-		wp_enqueue_style($this->plugin_name . '-woocommerce-style', plugin_dir_url(__FILE__) . 'build/woocommerce.css', [], self::VERSION);
-
+		wp_enqueue_style($this->plugin_name . '-woocommerce-style', plugin_dir_url(__FILE__) . 'assets/woocommerce.css', [], self::VERSION);
 
 		add_action('woocommerce_account_my-meets_endpoint', function () {
 			echo do_shortcode('[google-meet-and-zoom-integration]');
 		});
 
+	}
+
+	public function save_token($data)
+	{
+		if (isset($data['token']) && isset($data['type']) && isset($data['expire'])) {
+			$current_time = current_time('mysql');
+			$token_info = [
+				'token' => $data['token'],
+				'expire' => date('Y-m-d H:i:s', strtotime($current_time . ' + ' . $data['expire'] . 'seconds')),
+			];
+
+			update_user_meta(wp_get_current_user()->ID, $data['type'] . '_token', json_encode($token_info));
+
+			return [
+				'status' => 'ok'
+			];
+		}
+	}
+
+	public function get_info($data)
+	{
+		$user_id = wp_get_current_user()->ID;
+
+		if (isset($data['user_id'])) {
+			$user_id = $data['user_id'];
+		}
+
+		$google_token = get_user_meta($user_id, 'google_token', true);
+		$zoom_token = get_user_meta($user_id, 'zoom_token', true);
+
+		return [
+			'status' => 'ok',
+			'data' => [
+				'google_connected' => !empty($google_token),
+				'zoom_connected' => !empty($zoom_token)
+			]
+		];
 	}
 }
 

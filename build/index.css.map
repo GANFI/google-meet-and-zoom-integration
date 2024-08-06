@@ -1,0 +1,1 @@
+{"version":3,"file":"index.css","mappings":";;;AAAA;EACE;AACF,C","sources":["webpack://google-meet-and-zoom-integration/./src/styles/main.scss"],"sourcesContent":[".alert-close-icon:hover {\n  color: #000;\n}\n"],"names":[],"sourceRoot":""}
