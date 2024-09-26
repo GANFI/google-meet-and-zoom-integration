@@ -1,0 +1,302 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Google Meet and Zoom Integration\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-09-26 06:23+0000\n"
+"PO-Revision-Date: 2024-09-26 06:58+0000\n"
+"Last-Translator: Oleksandr Koval\n"
+"Language-Team: Ukrainian\n"
+"Language: uk\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10 >= 2 && "
+"n%10<=4 &&(n%100<10||n%100 >= 20)? 1 : 2);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Loco-Version: 2.6.6; wp-6.6.2"
+
+# Copyright (C) 2024 GANFI
+# This file is distributed under the GPL-2.0-or-later.
+#. Plugin Name of the plugin
+#: google-meet-and-zoom-integration.php
+msgid "Google Meet and Zoom Integration"
+msgstr "Інтеграція Google Meet і Zoom"
+
+#. Description of the plugin
+#: google-meet-and-zoom-integration.php
+msgid "Plugin for integration google meet and zoom"
+msgstr "Плагін для інтеграції Google Meet і Zoom"
+
+#. Author of the plugin
+#: google-meet-and-zoom-integration.php
+msgid "GANFI"
+msgstr "GANFI"
+
+#. Author URI of the plugin
+#: google-meet-and-zoom-integration.php
+msgid "https://t.me/GANFI/"
+msgstr "https://t.me/GANFI/"
+
+#: google-meet-and-zoom-integration.php:232
+msgid "My Meets"
+msgstr "Мої зустрічі"
+
+#: google-meet-and-zoom-integration.php:434 build/index.js:154
+#: src/components/meetTable/MeetManager.jsx:515
+msgid "Active"
+msgstr "Активний"
+
+#: google-meet-and-zoom-integration.php:435 build/index.js:154
+#: src/components/meetTable/MeetManager.jsx:516
+msgid "Passed"
+msgstr "Пройшов"
+
+#: google-meet-and-zoom-integration.php:436 build/index.js:154
+#: src/components/meetTable/MeetManager.jsx:517
+msgid "Canceled"
+msgstr "Скасований"
+
+#: includes/Admin/GZ_Meet_Integration_Admin.php:28
+#: includes/Admin/GZ_Meet_Integration_Admin.php:29
+#: includes/Admin/GZ_Meet_Integration_Admin.php:97
+msgid "Meet Permissions"
+msgstr "Дозволи Meet"
+
+#: includes/Admin/GZ_Meet_Integration_Admin.php:102
+msgid "Can View/Edit/Create for All Clients"
+msgstr "Можна переглядати/редагувати/створювати для всіх клієнтів"
+
+#: includes/Admin/GZ_Meet_Integration_Admin.php:116
+msgid "Can View/Edit/Create Only for Their Clients"
+msgstr "Може переглядати/редагувати/створювати лише для своїх клієнтів"
+
+#: includes/Admin/GZ_Meet_Integration_Admin.php:131
+msgid "Zoom API Credentials"
+msgstr "Облікові дані Zoom API"
+
+#: includes/Admin/GZ_Meet_Integration_Admin.php:133
+msgid "Zoom API Key"
+msgstr "Zoom API Key"
+
+#: includes/Admin/GZ_Meet_Integration_Admin.php:139
+msgid "Zoom API Secret"
+msgstr "Zoom API Secret"
+
+#: includes/Admin/GZ_Meet_Integration_Admin.php:145
+msgid "Zoom API Redirect URL"
+msgstr "Zoom API Redirect URL"
+
+#: includes/Admin/GZ_Meet_Integration_Admin.php:153
+msgid "Google API Credentials"
+msgstr "Облікові дані Google API"
+
+#: includes/Admin/GZ_Meet_Integration_Admin.php:155
+msgid "Google Client ID"
+msgstr "Google Client ID"
+
+#: includes/Admin/GZ_Meet_Integration_Admin.php:161
+msgid "Google Client Secret"
+msgstr "Google Client Secret"
+
+#: includes/Admin/GZ_Meet_Integration_Admin.php:168
+msgid "Google Redirect URL"
+msgstr "Google Redirect URL"
+
+#: includes/Admin/GZ_Meet_Integration_Admin.php:178
+msgid "Save Settings"
+msgstr "Зберегти налаштування"
+
+#: build/index.js:74 src/components/meetProviders/google.jsx:9
+#: src/components/meetProviders/google.jsx:65
+msgid "Google connected"
+msgstr "Google підключено"
+
+#: build/index.js:74 src/components/meetProviders/google.jsx:9
+msgid "Connect Google"
+msgstr "Підключіть Google"
+
+#: build/index.js:74 src/components/meetProviders/google.jsx:36
+msgid "Please provide the required scopes to use this app."
+msgstr "Будь ласка, надайте необхідні права для використання цього додатку."
+
+#: build/index.js:74 src/components/meetProviders/google.jsx:44
+#: src/components/meetProviders/google.jsx:51
+#: src/components/meetProviders/google.jsx:73
+#: src/components/meetProviders/zoom.jsx:46
+msgid "Something went wrong. Please try again."
+msgstr "Щось пішло не так. Спробуйте ще раз."
+
+#: build/index.js:74 src/components/meetProviders/google.jsx:66
+msgid "Google account was connected successfully."
+msgstr "Обліковий запис Google підключено успішно."
+
+#: build/index.js:74 src/components/meetProviders/zoom.jsx:8
+#: src/components/meetProviders/zoom.jsx:36
+msgid "Zoom connected"
+msgstr "Zoom підключено"
+
+#: build/index.js:74 src/components/meetProviders/zoom.jsx:8
+msgid "Connect Zoom"
+msgstr "Підключити Zoom"
+
+#: build/index.js:74 src/components/meetProviders/zoom.jsx:38
+msgid "Zoom account was connected successfully."
+msgstr "Обліковий запис Zoom підключено успішно."
+
+#: build/index.js:154 src/components/meetTable/MeetManager.jsx:240
+#: src/components/meetTable/MeetManager.jsx:333
+msgid "Error. Try again"
+msgstr "Помилка. Спробуйте знову"
+
+#: build/index.js:154 src/components/meetTable/MeetManager.jsx:243
+#: src/components/meetTable/MeetManager.jsx:336
+msgid "Success. Data is updated"
+msgstr "Успіх. Дані оновлені"
+
+#: build/index.js:154 src/components/meetTable/MeetManager.jsx:363
+#: src/components/meetTable/MeetManager.jsx:396
+msgid "Create Meet"
+msgstr "Створити Meet"
+
+#: build/index.js:154 src/components/meetTable/MeetManager.jsx:396
+msgid "Edit Meet"
+msgstr "Редагувати Meet"
+
+#: build/index.js:154 src/components/meetTable/MeetManager.jsx:403
+#: src/components/meetTable/MeetManager.jsx:616
+msgid "Date"
+msgstr "Дата"
+
+#: build/index.js:154 src/components/meetTable/MeetManager.jsx:417
+#: src/components/meetTable/MeetManager.jsx:420
+msgid "Date is required"
+msgstr "Необхідно вказати дату"
+
+#: build/index.js:154 src/components/meetTable/MeetManager.jsx:425
+#: src/components/meetTable/MeetManager.jsx:433
+#: src/components/meetTable/MeetManager.jsx:523
+#: src/components/meetTable/MeetManager.jsx:528
+#: src/components/meetTable/MeetManager.jsx:617
+msgid "Doctor"
+msgstr "Лікар"
+
+#: build/index.js:154 src/components/meetTable/MeetManager.jsx:441
+msgid "Doctor is required"
+msgstr "Лікар обовʼязкове поле"
+
+#: build/index.js:154 src/components/meetTable/MeetManager.jsx:445
+#: src/components/meetTable/MeetManager.jsx:453
+#: src/components/meetTable/MeetManager.jsx:554
+#: src/components/meetTable/MeetManager.jsx:559
+#: src/components/meetTable/MeetManager.jsx:618
+msgid "Client"
+msgstr "Клієнт"
+
+#: build/index.js:154 src/components/meetTable/MeetManager.jsx:461
+msgid "Client is required"
+msgstr "Потрібен клієнт"
+
+#: build/index.js:154 src/components/meetTable/MeetManager.jsx:465
+#: src/components/meetTable/MeetManager.jsx:473
+#: src/components/meetTable/MeetManager.jsx:619
+msgid "Meet Provider"
+msgstr "Тим міту"
+
+#: build/index.js:154 src/components/meetTable/MeetManager.jsx:475
+msgid "Google"
+msgstr "Google"
+
+#: build/index.js:154 src/components/meetTable/MeetManager.jsx:476
+msgid "Zoom"
+msgstr "Zoom"
+
+#: build/index.js:154 src/components/meetTable/MeetManager.jsx:478
+msgid "Meet Provider is required"
+msgstr "Тип міту обовяʼзкове поле "
+
+#: build/index.js:154 src/components/meetTable/MeetManager.jsx:284
+msgid ""
+"Selected doctor doesn't connect selected provider. The meet will be created "
+"by current user."
+msgstr ""
+"Обраний лікар не підключим обраний провайдер міту. Зустріч буде створено "
+"поточним користувачем."
+
+#: build/index.js:154 src/components/meetTable/MeetManager.jsx:288
+msgid ""
+"Selected doctor and current user don't connect selected provider. Please set "
+"up the selected provider first."
+msgstr ""
+"Обраний лікар і поточний користувач не підключили обраний провайдер міту. "
+"Спочатку підключіть обраний провайдер міту"
+
+#: build/index.js:154 src/components/meetTable/MeetManager.jsx:488
+msgid "Create"
+msgstr "Створити"
+
+#: build/index.js:154 src/components/meetTable/MeetManager.jsx:488
+msgid "Update"
+msgstr "оновлення"
+
+#: build/index.js:154 src/components/meetTable/MeetManager.jsx:495
+#: src/components/meetTable/MeetManager.jsx:500
+#: src/components/meetTable/MeetManager.jsx:615
+msgid "Status"
+msgstr "Статус"
+
+#: build/index.js:154 src/components/meetTable/MeetManager.jsx:584
+msgid "Date From"
+msgstr "Дата з"
+
+#: build/index.js:154 src/components/meetTable/MeetManager.jsx:593
+msgid "Date To"
+msgstr "Дата до"
+
+#: build/index.js:154 src/components/meetTable/MeetManager.jsx:620
+msgid "Actions"
+msgstr "Дії"
+
+#: build/index.js:154 src/components/meetTable/MeetManager.jsx:638
+msgid "Copy meet link"
+msgstr "Скопіюйте посилання на зустріч"
+
+#: build/index.js:154 src/components/meetTable/MeetManager.jsx:649
+msgid "Edit meet"
+msgstr "Редагувати зустріч"
+
+#: build/index.js:154 src/components/meetTable/MeetManager.jsx:303
+#: src/components/meetTable/MeetManager.jsx:660
+msgid "Cancel meet"
+msgstr "Скасувати зустріч"
+
+#: build/index.js:154 src/components/meetTable/MeetManager.jsx:304
+msgid "Do you want to cancel meet?"
+msgstr "Ви хочете скасувати зустріч?"
+
+#: build/index.js:154 src/components/meetTable/MeetManager.jsx:305
+msgid "Yes"
+msgstr "Так"
+
+#: build/index.js:154 src/components/meetTable/MeetManager.jsx:306
+msgid "No"
+msgstr "Ні"
+
+#: build/index.js:154 src/components/meetTable/MeetManager.jsx:671
+msgid "Download record"
+msgstr "Завантажити запис"
+
+#: build/index.js:154 src/components/meetTable/MeetManager.jsx:696
+msgid "No meetings"
+msgstr "Інформація не знайдена"
+
+#: build/index.js:154 src/components/ActionTabs.js:122
+msgid "My meets"
+msgstr "Мої зустрічі"
+
+#: build/index.js:154 src/components/ActionTabs.js:126
+msgid "Settings"
+msgstr "Налаштування"
+
+#: build/index.js:154 src/components/ActionTabs.js:138
+msgid "Set up your accounts here"
+msgstr "Налаштуйте свої облікові записи тут"

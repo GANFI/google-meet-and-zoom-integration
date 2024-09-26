@@ -16,7 +16,7 @@ class ComposerStaticInit8c6be1a2394becd7aade1955c427f8e8
     public static $prefixDirsPsr4 = array (
         'Ganfi\\GoogleMeetAndZoomIntegration\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/src',
+            0 => __DIR__ . '/../..' . '/includes',
         ),
     );
 

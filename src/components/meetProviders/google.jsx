@@ -1,20 +1,15 @@
+import { __ } from '@wordpress/i18n';
 import * as React from 'react';
 import { useGoogleLogin } from '@react-oauth/google';
 import Button from '@mui/material/Button';
 import { Google } from "@mui/icons-material";
-import { Alert } from "@mui/material";
-import IconButton from '@mui/material/IconButton';
-import CloseIcon from '@mui/icons-material/Close';
 import { useApiFetch } from "../../hooks/api";
 
-const GoogleConnection = ({isConnected = false}) => {
-    const [showAlert, setShowAlert] = React.useState(false);
-    const [alertType, setAlertType] = React.useState('');
-    const [alertMessage, setAlertMessage] = React.useState('');
-    const [buttonText, setButtonText] = React.useState(isConnected ? 'Google connected' : 'Connect Google');
+const GoogleConnection = ({handleAlert, isConnected = false}) => {
+    const [buttonText, setButtonText] = React.useState(isConnected ? __( 'Google connected', 'google-meet-and-zoom-integration') : __( 'Connect Google', 'google-meet-and-zoom-integration'));
     const [buttonDisabled, setButtonDisabled] = React.useState(isConnected);
 
-    const requiredScopes = ['https://www.googleapis.com/auth/meetings.space.created', 'https://www.googleapis.com/auth/meetings.media.readonly'];
+    const requiredScopes = ['https://www.googleapis.com/auth/meetings.space.created', 'https://www.googleapis.com/auth/meetings.media.readonly', 'https://www.googleapis.com/auth/calendar'];
 
     const neededScopesAreExisted = (scopes) => {
         return scopes.includes(requiredScopes[0]) && scopes.includes(requiredScopes[1]);
@@ -30,87 +25,62 @@ const GoogleConnection = ({isConnected = false}) => {
     const login = useGoogleLogin({
         onSuccess: async (response) => {
             if (neededScopesAreExisted(response.scope)) {
+                console.log(response)
                 setButtonDisabled(true);
                 await executeApi({
-                    token: response.access_token,
+                    token: response.code,
                     type: 'google',
                     expire: response.expires_in,
                 });
             } else {
-                setAlertMessage('Please provide the required scopes to use this app.');
-                setAlertType('error');
-                setShowAlert(true);
+                handleAlert(true, 'error', __( 'Please provide the required scopes to use this app.', 'google-meet-and-zoom-integration'));
                 setTimeout(() => {
-                    setShowAlert(false);
+                    handleAlert(false);
                 }, 4000);
             }
         },
         onError: (error) => {
             console.log(error);
-            setAlertMessage('Something went wrong. Please try again.');
-            setAlertType('error');
-            setShowAlert(true);
+            handleAlert(true, 'error', __( 'Something went wrong. Please try again.', 'google-meet-and-zoom-integration'));
             setTimeout(() => {
-                setShowAlert(false);
+                handleAlert(false)
             }, 4000);
         },
         onNonOAuthError: (error) => {
             console.log(error);
-            setAlertMessage('Something went wrong. Please try again.');
-            setAlertType('error');
-            setShowAlert(true);
+            handleAlert(true, 'error', __( 'Something went wrong. Please try again.', 'google-meet-and-zoom-integration'));
             setTimeout(() => {
-                setShowAlert(false);
+                handleAlert(false)
             }, 4000);
         },
         scope: requiredScopes.join(' '),
+        prompt: 'consent',
+        include_granted_scopes: true,
+        access_type: 'offline',
+        flow: 'auth-code',
     });
 
     React.useEffect(() => {
         if (apiData && !isApiPending && !apiError) {
-            setButtonText('Google connected');
-            setAlertMessage('Google account was connected successfully.');
-            setAlertType('success');
-            setShowAlert(true);
+            setButtonText(__( 'Google connected', 'google-meet-and-zoom-integration'));
+            handleAlert(true, 'success', __( 'Google account was connected successfully.', 'google-meet-and-zoom-integration'));
             setTimeout(() => {
-                setShowAlert(false);
+                handleAlert(false)
             }, 4000);
         }
         if (apiError) {
-            setButtonDisabled(false)
-            setAlertMessage('Something went wrong. Please try again.');
-            setAlertType('error');
-            setShowAlert(true);
+            setButtonDisabled(false);
+            handleAlert(true, 'error', __( 'Something went wrong. Please try again.', 'google-meet-and-zoom-integration'));
             setTimeout(() => {
-                setShowAlert(false);
+                handleAlert(false)
             }, 4000);
         }
     }, [isApiPending, apiError, apiData]);
 
     return (
         <div>
-            {showAlert && (
-                <Alert
-                    variant="outlined"
-                    severity={alertType}
-                    sx={{ mb: 2 }}
-                    action={
-                        <IconButton
-                            aria-label="close"
-                            color="inherit"
-                            size="small"
-                            onClick={() => {
-                                setShowAlert(false);
-                            }}
-                        >
-                            <CloseIcon className='alert-close-icon' fontSize="inherit" />
-                        </IconButton>
-                    }
-                >
-                    {alertMessage}
-                </Alert>
-            )}
             <Button
+                sx={{ mb: 2, mt: 2 }}
                 onClick={() => login()}
                 component="label"
                 role={undefined}

@@ -1,26 +1,41 @@
 import React from 'react';
+import dayjs from 'dayjs';
+import 'dayjs/locale/uk';
+import utc from 'dayjs/plugin/utc';
+import timezone from 'dayjs/plugin/timezone';
 import { createTheme, ThemeProvider } from '@mui/material';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { GoogleOAuthProvider } from '@react-oauth/google';
-import { ruRU } from "@mui/material/locale";
+import { ConfirmProvider } from "material-ui-confirm";
+import { ukUA } from "@mui/material/locale";
 import ActionTabs from "./components/ActionTabs";
+import tokens from "./utils/token";
 
+dayjs.extend(utc);
+dayjs.extend(timezone);
+
+dayjs.tz.setDefault('Europe/Kiev');
 
 const App = () => {
-
     const themeWithLocale = React.useMemo(
         () => createTheme({
             palette: {
                 primary: { main: '#1976d2' },
             },
-        }, ruRU),
+        }, ukUA),
         []
     );
 
     return (
         <ThemeProvider theme={themeWithLocale}>
-            <GoogleOAuthProvider clientId="174013105887-hijopn916usvs4tuqqb0u7fm47hmbd67.apps.googleusercontent.com">
-                <ActionTabs />
-            </GoogleOAuthProvider>
+            <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="uk">
+                <GoogleOAuthProvider clientId={tokens.googleClient}>
+                    <ConfirmProvider>
+                        <ActionTabs />
+                    </ConfirmProvider>
+                </GoogleOAuthProvider>
+            </LocalizationProvider>
         </ThemeProvider>
     );
 };

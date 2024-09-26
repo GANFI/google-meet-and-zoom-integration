@@ -6,5 +6,5 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'Ganfi\\GoogleMeetAndZoomIntegration\\' => array($baseDir . '/src'),
+    'Ganfi\\GoogleMeetAndZoomIntegration\\' => array($baseDir . '/includes'),
 );

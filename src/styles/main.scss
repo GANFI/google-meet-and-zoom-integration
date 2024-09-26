@@ -1,3 +1,28 @@
 .alert-close-icon:hover {
   color: #000;
 }
+
+.MuiPagination-ul li {
+  list-style: none;
+}
+
+.meet-date input[type=text]{
+  padding: 8.5px 14px;
+  border: 0;
+}
+
+#google-meet-and-zoom-integration button:hover,
+.MuiPopper-root button:hover,
+.meet-modal button:hover, {
+  color: unset;
+  border: 0;
+}
+
+.meet-tabs button:hover {
+  color: #1976d2 !important;
+  background-color: unset;
+}
+
+.cancel-meet-btn:hover {
+  color: unset;
+}

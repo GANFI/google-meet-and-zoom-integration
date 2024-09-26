@@ -1,0 +1,333 @@
+# Copyright (C) 2024 GANFI
+# This file is distributed under the GPL-2.0-or-later.
+"Project-Id-Version: Google Meet and Zoom Integration 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/google-meet-and-zoom-integration\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2024-09-26T06:23:04+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.11.0\n"
+"X-Domain: google-meet-and-zoom-integration\n"
+
+#. Plugin Name of the plugin
+#: google-meet-and-zoom-integration.php
+msgid "Google Meet and Zoom Integration"
+msgstr ""
+
+#. Description of the plugin
+#: google-meet-and-zoom-integration.php
+msgid "Plugin for integration google meet and zoom"
+msgstr ""
+
+#. Author of the plugin
+#: google-meet-and-zoom-integration.php
+msgid "GANFI"
+msgstr ""
+
+#. Author URI of the plugin
+#: google-meet-and-zoom-integration.php
+msgid "https://t.me/GANFI/"
+msgstr ""
+
+#: google-meet-and-zoom-integration.php:232
+msgid "My Meets"
+msgstr ""
+
+#: google-meet-and-zoom-integration.php:434
+#: build/index.js:154
+#: src/components/meetTable/MeetManager.jsx:515
+msgid "Active"
+msgstr ""
+
+#: google-meet-and-zoom-integration.php:435
+#: build/index.js:154
+#: src/components/meetTable/MeetManager.jsx:516
+msgid "Passed"
+msgstr ""
+
+#: google-meet-and-zoom-integration.php:436
+#: build/index.js:154
+#: src/components/meetTable/MeetManager.jsx:517
+msgid "Canceled"
+msgstr ""
+
+#: includes/Admin/GZ_Meet_Integration_Admin.php:28
+#: includes/Admin/GZ_Meet_Integration_Admin.php:29
+#: includes/Admin/GZ_Meet_Integration_Admin.php:97
+msgid "Meet Permissions"
+msgstr ""
+
+#: includes/Admin/GZ_Meet_Integration_Admin.php:102
+msgid "Can View/Edit/Create for All Clients"
+msgstr ""
+
+#: includes/Admin/GZ_Meet_Integration_Admin.php:116
+msgid "Can View/Edit/Create Only for Their Clients"
+msgstr ""
+
+#: includes/Admin/GZ_Meet_Integration_Admin.php:131
+msgid "Zoom API Credentials"
+msgstr ""
+
+#: includes/Admin/GZ_Meet_Integration_Admin.php:133
+msgid "Zoom API Key"
+msgstr ""
+
+#: includes/Admin/GZ_Meet_Integration_Admin.php:139
+msgid "Zoom API Secret"
+msgstr ""
+
+#: includes/Admin/GZ_Meet_Integration_Admin.php:145
+msgid "Zoom API Redirect URL"
+msgstr ""
+
+#: includes/Admin/GZ_Meet_Integration_Admin.php:153
+msgid "Google API Credentials"
+msgstr ""
+
+#: includes/Admin/GZ_Meet_Integration_Admin.php:155
+msgid "Google Client ID"
+msgstr ""
+
+#: includes/Admin/GZ_Meet_Integration_Admin.php:161
+msgid "Google Client Secret"
+msgstr ""
+
+#: includes/Admin/GZ_Meet_Integration_Admin.php:168
+msgid "Google Redirect URL"
+msgstr ""
+
+#: includes/Admin/GZ_Meet_Integration_Admin.php:178
+msgid "Save Settings"
+msgstr ""
+
+#: build/index.js:74
+#: src/components/meetProviders/google.jsx:9
+#: src/components/meetProviders/google.jsx:65
+msgid "Google connected"
+msgstr ""
+
+#: build/index.js:74
+#: src/components/meetProviders/google.jsx:9
+msgid "Connect Google"
+msgstr ""
+
+#: build/index.js:74
+#: src/components/meetProviders/google.jsx:36
+msgid "Please provide the required scopes to use this app."
+msgstr ""
+
+#: build/index.js:74
+#: src/components/meetProviders/google.jsx:44
+#: src/components/meetProviders/google.jsx:51
+#: src/components/meetProviders/google.jsx:73
+#: src/components/meetProviders/zoom.jsx:46
+msgid "Something went wrong. Please try again."
+msgstr ""
+
+#: build/index.js:74
+#: src/components/meetProviders/google.jsx:66
+msgid "Google account was connected successfully."
+msgstr ""
+
+#: build/index.js:74
+#: src/components/meetProviders/zoom.jsx:8
+#: src/components/meetProviders/zoom.jsx:36
+msgid "Zoom connected"
+msgstr ""
+
+#: build/index.js:74
+#: src/components/meetProviders/zoom.jsx:8
+msgid "Connect Zoom"
+msgstr ""
+
+#: build/index.js:74
+#: src/components/meetProviders/zoom.jsx:38
+msgid "Zoom account was connected successfully."
+msgstr ""
+
+#: build/index.js:154
+#: src/components/meetTable/MeetManager.jsx:240
+#: src/components/meetTable/MeetManager.jsx:333
+msgid "Error. Try again"
+msgstr ""
+
+#: build/index.js:154
+#: src/components/meetTable/MeetManager.jsx:243
+#: src/components/meetTable/MeetManager.jsx:336
+msgid "Success. Data is updated"
+msgstr ""
+
+#: build/index.js:154
+#: src/components/meetTable/MeetManager.jsx:363
+#: src/components/meetTable/MeetManager.jsx:396
+msgid "Create Meet"
+msgstr ""
+
+#: build/index.js:154
+#: src/components/meetTable/MeetManager.jsx:396
+msgid "Edit Meet"
+msgstr ""
+
+#: build/index.js:154
+#: src/components/meetTable/MeetManager.jsx:403
+#: src/components/meetTable/MeetManager.jsx:616
+msgid "Date"
+msgstr ""
+
+#: build/index.js:154
+#: src/components/meetTable/MeetManager.jsx:417
+#: src/components/meetTable/MeetManager.jsx:420
+msgid "Date is required"
+msgstr ""
+
+#: build/index.js:154
+#: src/components/meetTable/MeetManager.jsx:425
+#: src/components/meetTable/MeetManager.jsx:433
+#: src/components/meetTable/MeetManager.jsx:523
+#: src/components/meetTable/MeetManager.jsx:528
+#: src/components/meetTable/MeetManager.jsx:617
+msgid "Doctor"
+msgstr ""
+
+#: build/index.js:154
+#: src/components/meetTable/MeetManager.jsx:441
+msgid "Doctor is required"
+msgstr ""
+
+#: build/index.js:154
+#: src/components/meetTable/MeetManager.jsx:445
+#: src/components/meetTable/MeetManager.jsx:453
+#: src/components/meetTable/MeetManager.jsx:554
+#: src/components/meetTable/MeetManager.jsx:559
+#: src/components/meetTable/MeetManager.jsx:618
+msgid "Client"
+msgstr ""
+
+#: build/index.js:154
+#: src/components/meetTable/MeetManager.jsx:461
+msgid "Client is required"
+msgstr ""
+
+#: build/index.js:154
+#: src/components/meetTable/MeetManager.jsx:465
+#: src/components/meetTable/MeetManager.jsx:473
+#: src/components/meetTable/MeetManager.jsx:619
+msgid "Meet Provider"
+msgstr ""
+
+#: build/index.js:154
+#: src/components/meetTable/MeetManager.jsx:475
+msgid "Google"
+msgstr ""
+
+#: build/index.js:154
+#: src/components/meetTable/MeetManager.jsx:476
+msgid "Zoom"
+msgstr ""
+
+#: build/index.js:154
+#: src/components/meetTable/MeetManager.jsx:478
+msgid "Meet Provider is required"
+msgstr ""
+
+#: build/index.js:154
+#: src/components/meetTable/MeetManager.jsx:284
+msgid "Selected doctor doesn't connect selected provider. The meet will be created by current user."
+msgstr ""
+
+#: build/index.js:154
+#: src/components/meetTable/MeetManager.jsx:288
+msgid "Selected doctor and current user don't connect selected provider. Please set up the selected provider first."
+msgstr ""
+
+#: build/index.js:154
+#: src/components/meetTable/MeetManager.jsx:488
+msgid "Create"
+msgstr ""
+
+#: build/index.js:154
+#: src/components/meetTable/MeetManager.jsx:488
+msgid "Update"
+msgstr ""
+
+#: build/index.js:154
+#: src/components/meetTable/MeetManager.jsx:495
+#: src/components/meetTable/MeetManager.jsx:500
+#: src/components/meetTable/MeetManager.jsx:615
+msgid "Status"
+msgstr ""
+
+#: build/index.js:154
+#: src/components/meetTable/MeetManager.jsx:584
+msgid "Date From"
+msgstr ""
+
+#: build/index.js:154
+#: src/components/meetTable/MeetManager.jsx:593
+msgid "Date To"
+msgstr ""
+
+#: build/index.js:154
+#: src/components/meetTable/MeetManager.jsx:620
+msgid "Actions"
+msgstr ""
+
+#: build/index.js:154
+#: src/components/meetTable/MeetManager.jsx:638
+msgid "Copy meet link"
+msgstr ""
+
+#: build/index.js:154
+#: src/components/meetTable/MeetManager.jsx:649
+msgid "Edit meet"
+msgstr ""
+
+#: build/index.js:154
+#: src/components/meetTable/MeetManager.jsx:303
+#: src/components/meetTable/MeetManager.jsx:660
+msgid "Cancel meet"
+msgstr ""
+
+#: build/index.js:154
+#: src/components/meetTable/MeetManager.jsx:304
+msgid "Do you want to cancel meet?"
+msgstr ""
+
+#: build/index.js:154
+#: src/components/meetTable/MeetManager.jsx:305
+msgid "Yes"
+msgstr ""
+
+#: build/index.js:154
+#: src/components/meetTable/MeetManager.jsx:306
+msgid "No"
+msgstr ""
+
+#: build/index.js:154
+#: src/components/meetTable/MeetManager.jsx:671
+msgid "Download record"
+msgstr ""
+
+#: build/index.js:154
+#: src/components/meetTable/MeetManager.jsx:696
+msgid "No meetings"
+msgstr ""
+
+#: build/index.js:154
+#: src/components/ActionTabs.js:122
+msgid "My meets"
+msgstr ""
+
+#: build/index.js:154
+#: src/components/ActionTabs.js:126
+msgid "Settings"
+msgstr ""
+
+#: build/index.js:154
+#: src/components/ActionTabs.js:138
+msgid "Set up your accounts here"
+msgstr ""

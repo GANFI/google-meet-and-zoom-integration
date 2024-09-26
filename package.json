@@ -11,6 +11,9 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@babel/cli": "^7.25.6",
+    "@babel/preset-react": "^7.24.7",
+    "@wordpress/babel-plugin-makepot": "^6.8.0",
     "@wordpress/scripts": "^27.2.0"
   },
   "dependencies": {
@@ -18,6 +21,12 @@
     "@emotion/styled": "^11.13.0",
     "@mui/icons-material": "^5.16.5",
     "@mui/material": "^5.16.5",
-    "@react-oauth/google": "^0.12.1"
+    "@mui/x-date-pickers": "^7.17.0",
+    "@react-oauth/google": "^0.12.1",
+    "@wordpress/i18n": "^5.8.0",
+    "@wordpress/react-i18n": "^4.8.0",
+    "dayjs": "^1.11.13",
+    "material-ui-confirm": "^3.0.16",
+    "react-i18next": "^15.0.2"
   }
 }
