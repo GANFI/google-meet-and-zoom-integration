@@ -106,6 +106,8 @@ final class Google_Meet_And_Zoom_Integration
 
 	public function enqueue_scripts(): void
 	{
+		wp_enqueue_style($this->plugin_name . '-woocommerce-style',
+			plugin_dir_url( __FILE__ ) . 'assets/css/woocommerce.css', [], self::VERSION);
 		wp_enqueue_style($this->plugin_name . '-style', plugin_dir_url(__FILE__) . 'build/index.css', [], self::VERSION);
 		wp_enqueue_script($this->plugin_name . '-script', plugin_dir_url(__FILE__) . 'build/index.js', ['wp-element', 'wp-i18n'], self::VERSION, true);
 		wp_set_script_translations(
@@ -241,9 +243,6 @@ final class Google_Meet_And_Zoom_Integration
 			}
 			return $new_items;
 		}, 0);
-
-		wp_enqueue_style($this->plugin_name . '-woocommerce-style',
-			plugin_dir_url( __FILE__ ) . 'assets/css/woocommerce.css', [], self::VERSION);
 
 		add_action('woocommerce_account_my-meets_endpoint', function () {
 			echo do_shortcode('[google-meet-and-zoom-integration]');

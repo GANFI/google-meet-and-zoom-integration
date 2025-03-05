@@ -53,34 +53,35 @@ final class GZ_Meet_Integration_Admin
 
 	public function render_settings_page()
     {
-		$users = get_users( [
-			'meta_query' => [
-				'relation' => 'OR',
-				[
-					'key'     => 'arm_user_last_plan',
-					'value'   => 1,
-					'compare' => '!=',
-				],
-				[
-					'key'     => 'arm_user_last_plan',
-					'compare' => 'NOT EXISTS',
-				],
-			],
-		] );
+	    $users = get_users( [
+		    'meta_query' => [
+			    'relation' => 'OR',
+			    [
+				    'key'     => 'arm_user_last_plan',
+				    'value'   => 1,
+				    'compare' => '!=',
+			    ],
+			    [
+				    'key'     => 'arm_user_last_plan',
+				    'value'   => 2,
+				    'compare' => '!=',
+			    ],
+			    [
+				    'key'     => 'arm_user_last_plan',
+				    'compare' => 'NOT EXISTS',
+			    ],
+		    ],
+	    ] );
 
-		// Fetch current permissions for "all" and "my" roles
 		$permissions_all = [];
 		$permissions_my  = [];
 
 		foreach ( $users as $user ) {
-			$permissions = get_user_meta( $user->ID, 'gz_meet_permission',
-				true );
-			if ( isset( $permissions['all'] )
-			     && $permissions['all'] === true
-			) {
+			$permissions = get_user_meta( $user->ID, 'gz_meet_permission', true );
+			if ($permissions === 'all') {
 				$permissions_all[] = $user->ID;
 			}
-			if ( isset( $permissions['my'] ) && $permissions['my'] === true ) {
+			if ($permissions === 'my') {
 				$permissions_my[] = $user->ID;
 			}
 		}
