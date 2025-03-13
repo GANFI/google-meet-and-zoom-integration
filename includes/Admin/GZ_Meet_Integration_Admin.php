@@ -53,40 +53,23 @@ final class GZ_Meet_Integration_Admin
 
 	public function render_settings_page()
     {
-	    $users = get_users( [
-		    'meta_query' => [
-			    'relation' => 'OR',
-			    [
-				    'key'     => 'arm_user_last_plan',
-				    'value'   => 1,
-				    'compare' => '!=',
-			    ],
-			    [
-				    'key'     => 'arm_user_last_plan',
-				    'value'   => 2,
-				    'compare' => '!=',
-			    ],
-			    [
-				    'key'     => 'arm_user_last_plan',
-				    'compare' => 'NOT EXISTS',
-			    ],
-		    ],
-	    ] );
+	    global $wpdb;
 
-		$permissions_all = [];
-		$permissions_my  = [];
+	    $users = $wpdb->get_results("
+            SELECT DISTINCT u.ID, u.display_name, COALESCE(um_perm.meta_value, '') AS meet_permission
+            FROM {$wpdb->users} u
+            LEFT JOIN {$wpdb->usermeta} um_plan 
+                ON u.ID = um_plan.user_id AND um_plan.meta_key = 'arm_user_last_plan'
+            LEFT JOIN {$wpdb->usermeta} um_perm 
+                ON u.ID = um_perm.user_id AND um_perm.meta_key = 'gz_meet_permission'
+            WHERE (
+                um_plan.meta_value IS NULL 
+                OR um_plan.meta_value NOT IN ('1', '2')
+            )
+        ");
 
-		foreach ( $users as $user ) {
-			$permissions = get_user_meta( $user->ID, 'gz_meet_permission', true );
-			if ($permissions === 'all') {
-				$permissions_all[] = $user->ID;
-			}
-			if ($permissions === 'my') {
-				$permissions_my[] = $user->ID;
-			}
-		}
 
-		$zoom_api_key         = get_option( 'gz_meet_zoom_api_key', '' );
+	    $zoom_api_key         = get_option( 'gz_meet_zoom_api_key', '' );
 		$zoom_api_secret      = get_option( 'gz_meet_zoom_api_secret', '' );
 		$zoom_api_redirect    = get_option( 'gz_meet_zoom_api_redirect', '' );
 		$google_client_id     = get_option( 'gz_meet_google_client_id', '' );
@@ -106,8 +89,7 @@ final class GZ_Meet_Integration_Admin
                         class="gz-meet-select2" style="width: 100%;">
 					<?php foreach ( $users as $user ) : ?>
                         <option value="<?php echo esc_attr( $user->ID ); ?>"
-							<?php echo in_array( $user->ID, $permissions_all )
-								? 'selected' : ''; ?>
+							<?php echo $user->meet_permission === 'all' ? 'selected' : ''; ?>
                         >
 							<?php echo esc_html( $user->display_name ); ?>
                         </option>
@@ -120,8 +102,7 @@ final class GZ_Meet_Integration_Admin
                         class="gz-meet-select2" style="width: 100%;">
 					<?php foreach ( $users as $user ) : ?>
                         <option value="<?php echo esc_attr( $user->ID ); ?>"
-							<?php echo in_array( $user->ID, $permissions_my )
-								? 'selected' : ''; ?>
+	                        <?php echo $user->meet_permission === 'my' ? 'selected' : ''; ?>
                         >
 							<?php echo esc_html( $user->display_name ); ?>
                         </option>
@@ -199,38 +180,56 @@ final class GZ_Meet_Integration_Admin
 		$selected_my  = isset( $_POST['gz_meet_permission_my'] )
 			? array_map( 'intval', $_POST['gz_meet_permission_my'] ) : [];
 
-		$users = get_users( [
-			'meta_query' => [
-				'relation' => 'OR',
-				[
-					'key'     => 'arm_user_last_plan',
-					'value'   => 1,
-					'compare' => '!=',
-				],
-				[
-					'key'     => 'arm_user_last_plan',
-					'value'   => 2,
-					'compare' => '!=',
-				],
-				[
-					'key'     => 'arm_user_last_plan',
-					'compare' => 'NOT EXISTS',
-				],
-			],
-		] );
+		global $wpdb;
+		$existing_users = $wpdb->get_results("
+            SELECT DISTINCT u.ID, COALESCE(um_perm.meta_value, '') AS meet_permission
+            FROM {$wpdb->users} u
+            LEFT JOIN {$wpdb->usermeta} um_plan 
+                ON u.ID = um_plan.user_id AND um_plan.meta_key = 'arm_user_last_plan'
+            LEFT JOIN {$wpdb->usermeta} um_perm 
+                ON u.ID = um_perm.user_id AND um_perm.meta_key = 'gz_meet_permission'
+            WHERE (
+                um_plan.meta_value IS NULL 
+                OR um_plan.meta_value NOT IN ('1', '2')
+            )
+        ", ARRAY_A);
 
-		foreach ( $users as $user ) {
-			$permission_data = [
-				'all' => in_array( $user->ID, $selected_all ),
-				'my'  => in_array( $user->ID, $selected_my ),
-			];
+		$existing_users_map = [];
+		foreach ($existing_users as $row) {
+			$existing_users_map[$row['ID']] = $row['meet_permission'];
+		}
 
-            $permission = null;
+		$all_selected_ids = array_merge($selected_all, $selected_my);
+		$users_to_remove = array_diff(array_keys($existing_users_map), $all_selected_ids);
 
-            if ($permission_data['all']) $permission = 'all';
-            if ($permission_data['my']) $permission = 'my';
+		if (!empty($users_to_remove)) {
+			$placeholders = implode(',', array_fill(0, count($users_to_remove), '%d'));
+			$wpdb->query($wpdb->prepare("
+                DELETE FROM {$wpdb->usermeta} WHERE meta_key = 'gz_meet_permission' 
+                AND user_id IN ($placeholders)
+            ", $users_to_remove));
+		}
 
-			update_user_meta( $user->ID, 'gz_meet_permission', $permission );
+		$insert_data = [];
+
+		foreach ($selected_all as $user_id) {
+			if (!isset($existing_users_map[$user_id]) || $existing_users_map[$user_id] !== 'all') {
+				$insert_data[] = $wpdb->prepare("(%d, 'gz_meet_permission', 'all')", $user_id);
+			}
+		}
+
+		foreach ($selected_my as $user_id) {
+			if (!isset($existing_users_map[$user_id]) || $existing_users_map[$user_id] !== 'my') {
+				$insert_data[] = $wpdb->prepare("(%d, 'gz_meet_permission', 'my')", $user_id);
+			}
+		}
+
+		if (!empty($insert_data)) {
+			$wpdb->query("
+                INSERT INTO {$wpdb->usermeta} (user_id, meta_key, meta_value) 
+                VALUES " . implode(',', $insert_data) . " 
+                ON DUPLICATE KEY UPDATE meta_value = VALUES(meta_value)
+            ");
 		}
 
 		update_option( 'gz_meet_zoom_api_key',
